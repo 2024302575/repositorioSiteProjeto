@@ -1,3 +1,4 @@
+console.log ("aqui");
 document.addEventListener("DOMContentLoaded", ()=>{
     const menuResponsivo = document.getElementById("menuResponsivo");
     const navMenu = document.getElementById("nav-menu");
@@ -70,6 +71,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
         stopSlide();
         startSlide();
     });
+
+    startSlide();
     
     
     //fecha menu responsivo
