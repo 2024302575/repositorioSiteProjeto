@@ -1,0 +1,49 @@
+document.addEventListener("DOMContentLoaded", ()=>{
+    const menuResponsivo = document.getElementById("menuResponsivo");
+    const navMenu = document.getElementById("nav-menu");
+
+
+    menuResponsivo.addEventListener("click",()=>{
+        navMenu.classList.toggle("active")
+
+
+    });
+    //forEach = laço de repetição 
+    const navLinks = document.querySelectorAll(".nav-menu a")
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () =>{
+        navMenu.classList.remove("active");
+        })
+    });
+
+    const slides = document.querySelectorAll(".carousel-slide");
+// ponto = class
+// sem ponto = id
+// var = variavel global
+// let = variavel nao global
+    const dots = document.querySelectorAll(".dot");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    let slideAtual = 0;
+    let slideIntervalo;
+
+//showSlide = nome da função
+//length = tamanho
+// % = resto da divição
+//java = evento e ação
+    function showSlide(index) {slides.forEach((slide) => slide.classList.remove("active"));
+
+        dots.forEach((dot) => dot.classList.remove("active"));
+
+        slideAtual = (index + slides.length)
+            % slides.length;
+        slides[slideAtual].classList.add("active");
+        dots[slideAtual].classList.add("active");
+
+    }
+    
+    
+    
+    
+    //fecha menu responsivo
+});//final função evento carregar todo html
