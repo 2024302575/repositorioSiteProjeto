@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 //length = tamanho
 // % = resto da divição
 //java = evento e ação
+
     function showSlide(index) {slides.forEach((slide) => slide.classList.remove("active"));
 
         dots.forEach((dot) => dot.classList.remove("active"));
@@ -41,8 +42,34 @@ document.addEventListener("DOMContentLoaded", ()=>{
         dots[slideAtual].classList.add("active");
 
     }
+
+    function nextSlide(){
+        showSlide(slideAtual + 1);
+    }
+
+    function prevSlide(){
+        showSlide(slideAtual - 1);
+    }
+
+    function startSlide(){
+        slideIntervalo = setInterval(nextSlide, 5000);
+    }
     
-    
+    function stopSlide(){
+        clearInterval(slideIntervalo);
+    }
+
+    nextBtn.addEventListener("click", () => {
+        nextSlide();
+        stopSlide();
+        startSlide();
+    });
+
+    prevBtn.addEventListener("click", () => {
+        prevSlide();
+        stopSlide();
+        startSlide();
+    });
     
     
     //fecha menu responsivo
