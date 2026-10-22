@@ -99,6 +99,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
     contatoForm.addEventListener("submit", (event) =>{
         event.preventDefault();
 
+        clearError();
+
         let isValid = true;
 
         //validação do campo nome (verificar menimo 3 caracteres)
@@ -124,19 +126,56 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if(isValid)
         {
             clearError();
-            alert("Mensagem enviado com sucesso");
+            showToast("Mensagem enviado com sucesso");
             contatoForm.reset();
         }
 
     });
 
-    function showError(inputElement, mensagem){
+ //Remover a borda vermelha  dos inputs
+    [nome, email, mensagem].forEach((input) => {
+        input.addEventListener("input", () =>{
+            clearFieldError(input);
+        });
+    });
+
+    function showToast(mensagem){
+        const toast = document.getElementById("toast");
+        const toastMensagem = document.getElementById("toastMensagem");
+        toastMensagem.textContent = mensagem;
+        toast.classList.add("show");
+
+        setTimeout(() => {toast.classList.remove("show");
+        }, 3000);
+
+    }
+
+    function showError(inputElement, mensagem)
+    {
         const fomrGroup = inputElement.parentElement;
+        clearFieldError(inputElement);
         inputElement.classList.add("imput-error");
         const errorMensagem = document.createElement("small");
         errorMensagem.className = "error-text";
         errorMensagem.innerText = mensagem;
         fomrGroup.appendChild(errorMensagem);
+    }
+    //Remover erro individual do campo
+    function clearFieldError(inputElement){
+        const fomrGroup = inputElement.parentElement;
+        inputElement.classList.remove("input-error");
+
+        const removerErro = fomrGroup.querySelector("error-text");
+        if(removerErro){
+            removerErro.remove();
+        }
+    }
+    //Remover TODOS os erros do formulario
+    function clearError()
+    {
+        document.querySelectorAll(".error-text").forEach((el) => el.remove());
+
+        document.querySelectorAll(".input-error").forEach((el) => el.classList.remove("input-error"));
     }
 
     //fecha menu responsivo
