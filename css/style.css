@@ -146,6 +146,63 @@
     opacity: 1;
     z-index: 1;
   }
+/* 
+  .imagem-1-card{
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("../img/whatzapp.jpg");
+      /* display: flex; *
+      width: 150px;
+      height: 300px;
+  } */
+
+/* Estrutura base do card */
+.card {
+  border-radius: 10px;     /* Arredonda as bordas do card */
+  overflow: hidden;        /* Impede que a imagem vaze das bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Dá um leve efeito de sombra (opcional) */
+  height: 100%;            /* Faz o card ocupar a altura da grid */
+}
+
+/* Onde a mágica acontece */
+.imagem-1-card {
+  /* Mantém o fundo escurecido e a imagem */
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../img/whatzapp.jpg"); 
+  
+  /* Ajustes fundamentais da imagem */
+  background-size: cover;       /* Faz a imagem preencher todo o espaço do card */
+  background-position: center;  /* Centraliza a imagem no meio */
+  background-repeat: no-repeat; /* Evita repetições */
+
+  /* Dimensões */
+  width: 100%;                  /* Ocupa 100% da largura do .card */
+  min-height: 250px;            /* Define uma altura mínima bacana */
+
+  /* Flexbox para centralizar o texto exatamente no meio da imagem */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+  /* Estilização do texto interno */
+  padding: 20px;
+  box-sizing: border-box;
+  color: #ffffff;               /* Texto branco para destacar no fundo escuro */
+}
+
+/* Remove margens padrão para um visual mais limpo */
+.imagem-1-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.imagem-1-card p {
+  margin: 0;
+  font-size: 14px;
+}
   
   /* ===================================
      5. IMAGENS DOS SLIDES
@@ -452,7 +509,7 @@
   
   .card {
     background: #fff;
-  
+    
     padding: 2rem;
   
     border-radius: 12px;
@@ -477,6 +534,7 @@
     content: "";
   
     position: absolute;
+    
   
     top: 0;
     left: 0;
@@ -503,26 +561,55 @@
   }
   
   /* Ativa a linha superior */
-  
+  /*
+  lorenzo fez alteração aqui!!!!!!!!!!!!!!!!!!!!
+  antes era assim:
+  .card:hover::before {transform: scaleX(1);
+  }
+  */
   .card:hover::before {
     transform: scaleX(1);
   }
+
+
+  /* Estrutura da "moldura" do ícone */
+.card .icon {
+  /* Defina o tamanho do ícone (ajuste conforme necessário, 60px a 80px é um bom padrão) */
+  width: 135px;
+  height: 135px;
   
+  /* Centraliza o ícone no card (se o seu texto for centralizado) */
+  margin: 0 auto 1rem auto;
+  
+  transition: transform 0.4s ease;
+}
+
+/* Faz a imagem se adaptar perfeitamente dentro da div .icon */
+.card .icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 'contain' evita que a imagem corte. Use 'cover' se quiser que ela preencha todo o espaço cortando as bordas */
+  border-radius: 8px; /* Opcional: arredonda as bordas da imagem */
+}
+
+/* Animação do ícone ao passar o mouse no card (Mantida igual) */
+.card:hover .icon {
+  transform: scale(1.15);
+}
   /* Ícone */
-  
-  .card .icon {
+  /* .card .icon {
     font-size: 2.8rem;
   
     margin-bottom: 1rem;
-  
+
     transition: transform 0.4s ease;
   }
   
   /* Animação do ícone */
   
-  .card:hover .icon {
+  /* .card:hover .icon {
     transform: scale(1.15);
-  }
+  } */ 
   
   /* Título do card */
   
@@ -852,7 +939,7 @@
     /* Cards */
   
     .card {
-      padding: 1.5rem;
+      padding: 0.5rem;
     }
   }
   
